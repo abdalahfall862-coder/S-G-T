@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-G-T - Gestion de Tâches</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <h1 class="logo">✨S-G-T</h1>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Mode Sombre</button>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalTasks">0</div>
+                    <div class="stat-label">Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeTasks">0</div>
+                    <div class="stat-label">Actives</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedTasks">0</div>
+                    <div class="stat-label">Complétées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completionRate">0%</div>
+                    <div class="stat-label">Taux de réussite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Input -->
+        <div class="task-input-section">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    class="task-input" 
+                    id="taskInput" 
+                    placeholder="Ajouter une nouvelle tâche..."
+                    onkeypress="handleKeyPress(event)"
+                >
+                <select class="category-select" id="categorySelect">
+                    <option value="travail">💼 Travail</option>
+                    <option value="personnel">🏠 Personnel</option>
+                    <option value="urgent">🔥 Urgent</option>
+                    <option value="autre">📌 Autre</option>
+                </select>
+                <button class="add-btn" onclick="addTask()">➕ Ajouter</button>
+            </div>
+        </div>
+
+        <!-- AI Suggestions -->
+            <div class="ai-section">
+                <button class="ai-btn" onclick="getAISuggestions()">
+                    🤖 Suggestions IA
+                </button>
+                <div class="ai-suggestions" id="aiSuggestions"></div>
+            </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterTasks('all')" data-filter="all">📋 Toutes</button>
+            <button class="filter-btn" onclick="filterTasks('active')" data-filter="active">⚡ Actives</button>
+            <button class="filter-btn" onclick="filterTasks('completed')" data-filter="completed">✅ Complétées</button>
+            <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="🔍 Rechercher une tâche..."
+                oninput="searchTasks()"
+            >
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks-container">
+            <ul class="tasks-list" id="tasksList">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📝</div>
+                    <h3>Aucune tâche pour le moment</h3>
+                    <p>Commencez par ajouter votre première tâche !</p>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
